@@ -45,4 +45,4 @@ Most of the work is copied from Franck Pachot's [tmux-interactive-demo](https://
 
 * On Windows, it works like a charm with most clickers. Logitech pointers come with a software to customize the buttons.
 * On MacOS, you might find [Karabiner-Elements](https://karabiner-elements.pqrs.org/) useful to remap device keys.
-* Not tested on Linux. Let me know how that works for you!
+* Not tested with clickers on Linux. Let me know if that works for you! `tmux` via `ssh` and using cloud shells work perfectly.
