@@ -1,3 +1,9 @@
+#!/bin/sh
+
+set -eu
+
+log_file=${RUN_FROM_VIM_LOG:-$(mktemp "${TMPDIR:-/tmp}/runFromVim.XXXXXX")}
+
 awk '
 
 function ltrim(s) { sub(/^[ \t\r\n]+/, "", s); return s }
@@ -65,6 +71,6 @@ print "tmux set-option status-right $(date +%H:%M)"
  print "# arg1: " arg1
  next
 }
-' q="'" qq='"' arg1="$1" | tee /tmp/runFromVim.log | bash 
+' q="'" qq='"' arg1="${1:-}" | tee "$log_file" | sh
 
 exit

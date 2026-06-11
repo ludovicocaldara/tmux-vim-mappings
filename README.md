@@ -4,22 +4,32 @@ Most of the work is copied from Franck Pachot's [tmux-interactive-demo](https://
 
 ## Setup
 
-* Save the current configuration files if you have them already:
+Clone the repository and run the installer:
 
-    ```bash
-    mv ~/.tmux.conf ~/.tmux.conf.save
-    mv ~/.vimrc ~/.vimrc.save
-    ```
+```bash
+git clone https://github.com/ludovicocaldara/tmux-vim-mappings.git
+cd tmux-vim-mappings
+./install.sh
+```
 
-* Copy the configuration files and command executor:
+The installer backs up existing files with a timestamped `.save` suffix, then installs:
 
-    ```bash
-    git clone https://github.com/ludovicocaldara/tmux-vim-mappings.git
-    cp tmux-vim-mappings/tmux.conf ~/.tmux.conf
-    cp tmux-vim-mappings/vimrc ~/.vimrc
-    cp tmux-vim-mappings/runFromVim.sh ~/.runFromVim.sh
-    cp tmux-vim-mappings/sendBuffer.sh ~/.sendBuffer.sh
-    ```
+```text
+~/.tmux.conf
+~/.vimrc
+~/.runFromVim.sh
+~/.sendBuffer.sh
+```
+
+To install manually instead:
+
+```bash
+cp tmux.conf ~/.tmux.conf
+cp vimrc ~/.vimrc
+cp runFromVim.sh ~/.runFromVim.sh
+cp sendBuffer.sh ~/.sendBuffer.sh
+chmod 755 ~/.runFromVim.sh ~/.sendBuffer.sh
+```
 
 ## Usage
 
@@ -32,14 +42,30 @@ Most of the work is copied from Franck Pachot's [tmux-interactive-demo](https://
 * Open the demo script with `vi`:
 
     ```bash
-    vi test.bash
+    vi testme.bash
     ```
 
-    ![two terminals, one with tmux and one with vi, show the demo using test.bash](demo.gif)
+    ![two terminals, one with tmux and one with vi, show the demo using testme.bash](demo.gif)
 
 * Go through the demo by pressing `PgDown`:
 
     If you are on Mac and you don't have `PgDown` on your keyboard, you can edit `~/.vimrc` and remap to another keypress.
+
+## Demo script syntax
+
+* Plain lines are sent to the active tmux pane and executed with `Enter`.
+* Blank lines send `Enter`.
+* Lines starting with `---` are executed by the shell after the prefix is removed.
+* Lines starting with `--- ##` are displayed in the tmux message bar.
+* Lines starting with `tmux ` are executed as tmux commands for compatibility with older demos.
+
+## Development
+
+Run the syntax checks with:
+
+```bash
+make test
+```
 
 ## Notes
 
